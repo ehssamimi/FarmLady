@@ -12,9 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+//    return view('welcome');
+//    return view('adminPanel.layOut.categories.create-categories');
+    return view('adminPanel.layOut.dashBoard.Dashboard');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::prefix('administrator')->group(  function () {
+    Route::Resource('category','admin\CategoryController');
+});
+
