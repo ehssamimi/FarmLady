@@ -14,5 +14,10 @@ class Category extends Model
     {
         return $this->children()->with('childrenRecursive');
     }
+    public function product()
+    {
+//        return $this->hasMany(Category::class);
+        return $this->belongsToMany(Product::class);
+    }
 
 }

@@ -1,4 +1,4 @@
-/* Dore Main Style 
+/* Dore Main Style
 
 Table of Contents
 
@@ -10732,5 +10732,47 @@ footer.page-footer {
     .mobile-menu-cta {
         padding-left: 1rem;
         padding-right: 1rem;
+    }
+}
+.invalid-feedback {
+    border-radius: $border-radius;
+    padding: 0.5rem 1rem;
+    font-size: 0.76rem;
+    color: $primary-color;
+    background: $foreground-color;
+    border: 1px solid $theme-color-1;
+    text-align: center;
+    width: unset !important;
+    position: absolute;
+    z-index: 4;
+    margin-top: -0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    @include depth(1);
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: -5px;
+        left: -2.5px;
+        margin-left: 50%;
+        width: 10px;
+        height: 5px;
+        border-bottom: solid 5px $theme-color-1;
+        border-left: solid 5px transparent;
+        border-right: solid 5px transparent;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: -4px;
+        left: -2.5px;
+        margin-left: 50%;
+        width: 10px;
+        height: 5px;
+        border-bottom: solid 5px $foreground-color;
+        border-left: solid 5px transparent;
+        border-right: solid 5px transparent;
     }
 }

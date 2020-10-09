@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="/admin/font/simple-line-icons/css/simple-line-icons.css" />
 
     <link rel="stylesheet" href="/admin/css/vendor/bootstrap.min.css" />
+{{--    <link rel="stylesheet" href="/admin/DropZone-min/basic.min.css" />--}}
+{{--    <link rel="stylesheet" href="/admin/DropZone-min/dropzone.min.css" />--}}
     <link rel="stylesheet" href="/admin/css/vendor/bootstrap.rtl.only.min.css" />
     <link rel="stylesheet" href="/admin/css/vendor/bootstrap-float-label.min.css" />
     <link rel="stylesheet" href="/admin/css/vendor/select2.min.css" />
@@ -24,6 +26,8 @@
     <link rel="stylesheet" href="/admin/css/dore.light.greenlime.min.css" />
     <link rel="stylesheet" href="/Iran-sans/css/fontiran.css">
     <link rel="stylesheet" href="/Iran-sans/css/style.css">
+
+
     @yield("css-import")
 {{--    //Or other theme of your choice--}}
 </head>

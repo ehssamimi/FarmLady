@@ -8,10 +8,22 @@
                         <span>دسته بندی</span>
                     </a>
                 </li>
+                <li class={{$main=="attributes"?"active":""}}>
+                    <a href="#attributes">
+                        <i class="iconsminds-shop-4"></i>
+                        <span>ویژگی</span>
+                    </a>
+                </li>
                 <li class={{$main=="dashboard"?"active":""}}>
                     <a href="#dashboard">
                         <i class="iconsminds-shop-4"></i>
                         <span>Dashboards</span>
+                    </a>
+                </li>
+                <li class={{$main=="products"?"active":""}}>
+                    <a href="#products">
+                        <i class="iconsminds-shop-4"></i>
+                        <span>محصولات</span>
                     </a>
                 </li>
 
@@ -42,6 +54,32 @@
                     </a>
                 </li>
 
+            </ul>
+            <ul class="list-unstyled" data-link="attributes">
+                <li class={{$sub=="create-attributes"?"active":""}} >
+                    <a href={{route("attribute.create")}}>
+                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">ایجاد ویژگی </span>
+                    </a>
+                </li>
+                <li class={{$sub=="list-attributes"?"active":""}}>
+                    <a href={{route("attribute.index")}}>
+                        <i class="simple-icon-pie-chart"></i> <span class="d-inline-block">لیست ویژگی ها </span>
+                    </a>
+                </li>
+
+            </ul>
+
+             <ul class="list-unstyled" data-link="products">
+                <li class={{$sub=="create-products"?"active":""}} >
+                    <a href={{route("product.create")}}>
+                        <i class="simple-icon-rocket"></i> <span class="d-inline-block">ایجاد محصول </span>
+                    </a>
+                </li>
+                <li class={{$sub=="list-products"?"active":""}}>
+                    <a href={{route("product.index")}}>
+                        <i class="simple-icon-pie-chart"></i> <span class="d-inline-block">لیست محصولات </span>
+                    </a>
+                </li>
             </ul>
 
             <ul class="list-unstyled" data-link="menu" id="menuTypes">
