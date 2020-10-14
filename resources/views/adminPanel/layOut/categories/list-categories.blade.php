@@ -4,6 +4,20 @@
 @section("content")
     <main>
         <div class="container-fluid">
+            @if(Session::has('error_DeleteCategory'))
+                <div class="alert alert-danger">
+                    {{Session('error_DeleteCategory')}}
+                </div>
+            @endif
+            @if(Session::has('success_DeleteCategory'))
+                <div class="alert alert-success">
+                    {{Session('success_DeleteCategory')}}
+                </div>
+            @endif
+
+
+
+
             @include('adminPanel.master.partial.Header',["main"=>"لیست دسته بندی ها" ])
 
             <div class="row">
@@ -11,7 +25,7 @@
                     @foreach($categories as $category)
                         <div class="card d-flex flex-row mb-3">
                             <a class="d-flex" href="Pages.Product.Detail.html">
-                                <img src="/admin/img/products/fat-rascal-thumb.jpg" alt="Fat Rascal"
+                                <img src="{{$category->photos[0]->path}}" alt="s"
                                      class="list-thumbnail responsive border-0 card-img-left" />
                             </a>
                             <div class="pl-2 d-flex flex-grow-1 min-width-zero">
@@ -22,10 +36,14 @@
                                     </a>
                                     <p class="mb-0 text-muted text-small w-15 w-sm-100">{{$category->parent}}</p>
 {{--                                    <p class="mb-0 text-muted text-small w-15 w-sm-100">13.04.2018</p>--}}
-                                    <div class="w-30 w-sm-100">
+                                    <div class="w-30 w-sm-100 d-flex">
                                         <a href={{route("category.edit", $category->id )}}>   <span class="btn  btn-warning"  onclick="">ویرایش</span></a>
 
-                                        <span class="badge badge-pill  badge-danger">حذف</span>
+                                        <form method="post" action={{route("category.destroy",$category->id)}}  =>
+                                            @csrf
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <button class="btn btn-danger ">حذف</button>
+                                        </form>
                                     </div>
                                 </div>
 {{--                                <label class="custom-control custom-checkbox mb-1 align-self-center pr-4">--}}

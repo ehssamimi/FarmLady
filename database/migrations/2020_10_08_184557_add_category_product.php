@@ -17,10 +17,10 @@ class AddCategoryProduct extends Migration
             $table->increments('id');
 
             $table->unsignedInteger('category_id');
-            $table->foreign('category_id')->references("id")->on("categories");
+            $table->foreign('category_id')->references("id")->on("categories")->onDelete("cascade");;
 
             $table->unsignedInteger('product_id');
-            $table->foreign('product_id')->references("id")->on("products");
+            $table->foreign('product_id')->references("id")->on("products")->onDelete("cascade");;
 
 
         });

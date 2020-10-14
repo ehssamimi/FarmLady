@@ -18,14 +18,22 @@ class PhotoController extends Controller
 //        dd($request->all());
 
         $uploadFile = $request->file('file');
+        $newFileName=str_replace(" ","",$uploadFile->getClientOriginalName());
 
-        $filename = time() . $uploadFile->getClientOriginalName();
+
+//        $filename = time();
+        $filename = time() . $newFileName;
+//        $filename = time() . $uploadFile->getClientOriginalName();
         $original_name = $uploadFile->getClientOriginalName();
+
+//        $filename = time() .$newFileName;
+//        $original_name = $newFileName;
+
 
 //
         Storage::disk('local')->putFileAs('public/photos/' , $uploadFile, $filename);
         $photo = new Photo();
-        $photo->original_name = $original_name;
+        $photo->original_name = $filename;
         $photo->path = $filename;
 //        $photo->user_id = Auth::user()->id;
 //                dd($photo);

@@ -19,9 +19,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $categories=Category::with("childrenRecursive")->where("parent_id",null)->paginate(2);
+        $products=Product::with(["photos","categories","attributes"])->paginate(10);
+//        return $products;
 
-        return (view("adminPanel.layOut.categories.list-products",compact(["categories"])));
+
+        return (view("adminPanel.layOut.products.list-products",compact(["products"])));
 //        return (view("adminPanel.layOut.products.list-products"))
 
 
@@ -72,26 +74,6 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 //        return $request->all();
-
-        //        {
-//            "_token": "B0Ei9YxiN9ujCBFFiwGXnY4pfRXIMFTVgk6L4W20",
-//"title": "عسل",
-//"slug": "عسل طبیعی",
-//"price": "30000",
-//"count": "25",
-//"discount_price": "این محصول اورگانیک است",
-//"photo_id": [
-//            null
-//        ],
-//"status": "0",
-//"وزن": "250",
-//"رنگ": null
-
-//}
-
-
-//       return $attributes ;
-
 
 
 
@@ -148,20 +130,10 @@ class ProductController extends Controller
 
                 }
             }
+            return redirect('/administrator/product');
 
 
 
-//            Session::flash('success', 'محصول با موفقیت اضافه شد.');
-//            return redirect('/administrator/products');
-
-
-
-
-//
-//            $attribute=new Attribute();
-//            $attribute->name=$request->input("name");
-//            $attribute->save();
-//            return redirect('/administrator/attribute') ;
         }
     }
 
@@ -184,7 +156,14 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product=Product::with(["photos","categories","attributes"])->whereId($id)->first();
+        $categories=Category::with("childrenRecursive")->where("parent_id",null)->get();
+        $attributes=Attribute::all();
+//        return $product;
+
+
+
+        return (view("adminPanel.layOut.products.edit-products",compact(["product","categories","attributes"])));
     }
 
     /**
@@ -196,7 +175,65 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+//        return $request->all();
+
+
+        $validator=Validator::make($request->all(),[
+            'title'=>'required ',
+            'slug'=>'required ',
+            'price'=>'required ',
+            'count'=>'required ',
+            'photo_id'=>'required ',
+            'status'=>'required ',
+
+        ], [
+
+            'title.required' => "نام اجباری است ",
+            'slug.required' => "نام اجباری است ",
+            'price.required' => "قیمت اجباری است ",
+            'count.required' => "تعداد اجباری است ",
+            'photo_id.required' => "عکس اجباری است ",
+            'status.required' => "وضعیت اجباری است ",
+
+        ]);
+        if ($validator->fails()){
+            return redirect('administrator/product/create')->withErrors($validator)->withInput();
+        }else{
+             $newProduct = Product::findOrFail($id);;
+            $newProduct->title = $request->title;
+            $newProduct->sku = $this->generateSKU();
+            $newProduct->slug = $this->makeSlug($request->slug);
+            $newProduct->status = $request->status;
+            $newProduct->price = $request->price;
+            $newProduct->discount_price = $request->discount_price;
+            $newProduct->description = $request->description;
+            $newProduct->count = $request->count;
+//            $newProduct->brand_id = $request->brand;
+//            $newProduct->meta_desc = $request->meta_desc;
+//            $newProduct->meta_title = $request->meta_title;
+//            $newProduct->meta_keywords = $request->meta_keywords;
+//            $newProduct->user_id = 1;
+
+            $newProduct->save();
+
+
+            $photos = explode(',', $request->input('photo_id')[0]);
+
+            $newProduct->categories()->sync($request->categories);
+
+            $newProduct->photos()->sync($photos);
+
+            $attributes=Attribute::all() ;
+            foreach ($attributes as $attribute) {
+                if ( $request->input($attribute->name)!==null){
+                    $newProduct->attributes()->attach($attribute->id, ['value' => $request->input($attribute->name) ]);
+
+                }
+            }
+            Session::flash('success_DeleteCategory', 'محصول '.$newProduct->title."با موفقیت به روز رسانی شد");
+            return redirect('/administrator/product');
+
+        }
     }
 
     /**
@@ -207,6 +244,16 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::with("photos")->where("id", $id)->first();
+//        if (count($category->childrenRecursive) > 0) {
+//            Session::flash('error_DeleteCategory','دسته بندی ' . $category->name.' به خاطر داشتن زیر دسته قابل حذف نیست ');
+//        } else {
+//            $category->delete();
+//            Session::flash('success_DeleteCategory', 'دسته بندی'.$category->name."حذف شد ");
+//
+//        }
+        Session::flash('success_DeleteCategory', 'محصول '.$product->title."حذف شد ");
+        $product->delete();
+        return redirect('/administrator/product');
     }
 }

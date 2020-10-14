@@ -11,15 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-//    return view('welcome');
-//    return view('adminPanel.layOut.categories.create-categories');
-    return view('adminPanel.layOut.dashBoard.Dashboard');
-});
+//Route::get('/', function () {
+////    return view('welcome');
+////    return view('adminPanel.layOut.categories.create-categories');
+//    return view('adminPanel.layOut.dashBoard.Dashboard');
+//});
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::Resource('/','front\HomeController');
+
 Route::prefix('administrator')->group(  function () {
 
     Route::Resource('photo','admin\PhotoController');

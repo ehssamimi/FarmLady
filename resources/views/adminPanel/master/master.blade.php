@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/admin/css/vendor/bootstrap.min.css" />
 {{--    <link rel="stylesheet" href="/admin/DropZone-min/basic.min.css" />--}}
 {{--    <link rel="stylesheet" href="/admin/DropZone-min/dropzone.min.css" />--}}
+    <link rel="stylesheet" href="/admin/css/vendor/dropzone.min.css" />
     <link rel="stylesheet" href="/admin/css/vendor/bootstrap.rtl.only.min.css" />
     <link rel="stylesheet" href="/admin/css/vendor/bootstrap-float-label.min.css" />
     <link rel="stylesheet" href="/admin/css/vendor/select2.min.css" />
@@ -220,10 +221,20 @@
 <script src="/admin/js/vendor/select2.full.js"></script>
 <script src="/admin/js/vendor/bootstrap-datepicker.js"></script>
 <script src="/admin/js/vendor/bootstrap-tagsinput.min.js"></script>
-
+<script src="/admin/js/vendor/dropzone.min.js"></script>
 <script src="/admin/js/dore.script.js"></script>
 {{--<script src="/admin/js/scripts.js"></script>--}}
 <script src="/admin/js/scripts.single.theme.js"></script>
+
+<script src="/admin/js/vendor/mousetrap.min.js"></script>
+<script src="/admin/js/vendor/jquery.contextMenu.min.js"></script>
+<script src="/admin/js/scripts.js"></script>
+
+
+
+
+
+
 @yield("js-import")
 
 </body>

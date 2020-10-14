@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class CategoryController extends Controller
 {
@@ -15,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories=Category::with("childrenRecursive")->where("parent_id",null)->paginate(2);
+        $categories=Category::with(["childrenRecursive","photos"])->where("parent_id",null)->paginate(10);
 
         return (view("adminPanel.layOut.categories.list-categories",compact(["categories"])));
     }
@@ -40,6 +41,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
 //        dd($request->all());
+//        return $request->all();
 
         $category=new Category();
         $category->name=$request->name;
@@ -52,6 +54,7 @@ class CategoryController extends Controller
              $category->parent_id=$request->parent_id;
         }
         $category->save();
+         $category->photos()->sync($request->input('photo_id'));
         return redirect('/administrator/category');
 
     }
@@ -75,8 +78,12 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-     $category=Category::findOrFail($id);
+
+     $category=Category::with("photos")->findOrFail($id);
      $categories=Category::with("childrenRecursive")->where("parent_id",null)->get();
+
+
+
      return view("adminPanel.layOut.categories.edit-categories",compact(["category","categories"]));
 
 
@@ -92,7 +99,19 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category=Category::findOrFail($id);
+        $category->name=$request->name;
+        $category->meta_title=$request->meta_title;
+        $category->meta_desc=$request->meta_desc;
+        $category->meta_keyword=$request->meta_keyword;
+        if ($request->parent_id=="تگ پدر را انتخاب کنید"){
+            $category->parent_id=null;
+        }else{
+            $category->parent_id=$request->parent_id;
+        }
+        $category->save();
+        $category->photos()->sync($request->input('photo_id'));
+        return redirect('/administrator/category');
     }
 
     /**
@@ -103,6 +122,14 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::with("childrenRecursive")->where("id", $id)->first();
+        if (count($category->childrenRecursive) > 0) {
+            Session::flash('error_DeleteCategory','دسته بندی ' . $category->name.' به خاطر داشتن زیر دسته قابل حذف نیست ');
+        } else {
+            $category->delete();
+            Session::flash('success_DeleteCategory', 'دسته بندی'.$category->name."حذف شد ");
+
+        }
+        return redirect('/administrator/category');
     }
 }

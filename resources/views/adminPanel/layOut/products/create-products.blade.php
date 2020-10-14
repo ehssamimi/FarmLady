@@ -4,8 +4,8 @@
 
 
 @section("css-import")
-    <link rel="stylesheet" href={{asset("/admin/DropZone-min/basic.min.css")}}>
-    <link rel="stylesheet" href={{asset("/admin/DropZone-min/dropzone.min.css")}}>
+{{--    <link rel="stylesheet" href={{asset("/admin/DropZone-min/basic.min.css")}}>--}}
+{{--    <link rel="stylesheet" href={{asset("/admin/DropZone-min/dropzone.min.css")}}>--}}
 
 @endsection
 @section("content")
@@ -107,8 +107,19 @@
                                 </div>
                                 </div>
 
-
                                 <div class=" col-12 col-md-6">
+                                    <div class="form-group   ">
+                                        <label for="status" class="col-sm-2 control-label">وضعیت نشر</label>
+                                        <div class="col-sm-10">
+                                            <input type="radio" value="0" name="status"  style="vertical-align: text-top" checked ><span>فعال</span>
+                                            <input type="radio" value="1" name="status" style="vertical-align: text-top" ><span>غیر فعال</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class=" col-12  ">
                                 <div class="form-group has-float-label   ">
                                     <label for="description">  توضیحات محصول </label>
                                     <textarea   row="4" class="form-control ckeditor" id="description" name="description" placeholder="توضیحات">
@@ -123,7 +134,7 @@
                                 </div>
                                 <div class=" col-12 col-md-6">
                                 <div class="form-group  ">
-                                    <label for="dropzone" class="col-sm-2 control-label">عکس</label>
+                                    <label  class="col-sm-2 control-label">عکس</label>
                                     <div class=" dropzone col-sm-10 m-2" id="photo" ></div>
                                     <input type="hidden" class="form-control" id="photo_id" name="photo_id[]" >
                                 </div>
@@ -148,35 +159,29 @@
 {{--                                    </div>--}}
 {{--                                </div>--}}
 
-                                <div class=" col-12 col-md-6">
-                                <div class="form-group   ">
-                                    <label for="categories"  >دسته بندی</label>
-{{--                                    <select class="form-control select2-single" name="parent_id" data-width="100%">--}}
-                                    <select class="form-control select2-multiple w-100" multiple="multiple" data-width="100%" name="categories[]">
-                                        <option value="دسته بندی را انتخاب کنید">انتخاب دسته بندی </option>
-                                        @if( count($categories)>0)
-                                            @foreach($categories as $category)
-                                                <option value={{$category->id}}>{{$category->name}}</option>
-                                                @if (count($category->childrenRecursive))
-                                                    @include('adminPanel.layOut.categories.partial.partial-create-categories',["categories"=>$category->childrenRecursive,"level"=>1])
-                                                @endif
-                                            @endforeach
-                                        @endif
-
-                                    </select>
-
-                                </div>
-                                </div>
 
                                 <div class=" col-12 col-md-6">
-                                <div class="form-group   ">
-                                    <label for="status" class="col-sm-2 control-label">وضعیت نشر</label>
-                                    <div class="col-sm-10">
-                                        <input type="radio" value="0" name="status"  style="vertical-align: text-top" checked ><span>فعال</span>
-                                        <input type="radio" value="1" name="status" style="vertical-align: text-top" ><span>غیر فعال</span>
+                                    <div class="form-group      ">
+                                        <label for="categories"  >دسته بندی</label>
+                                        {{--                                    <select class="form-control select2-single" name="parent_id" data-width="100%">--}}
+
+                                        <select class="form-control select2-multiple w-100" multiple="multiple" data-width="100%" name="categories[]">
+                                            <option value="دسته بندی را انتخاب کنید">انتخاب دسته بندی </option>
+                                            @if( count($categories)>0)
+                                                @foreach($categories as $category)
+                                                    <option value={{$category->id}}>{{$category->name}}</option>
+                                                    @if (count($category->childrenRecursive))
+                                                        @include('adminPanel.layOut.categories.partial.partial-create-categories',["categories"=>$category->childrenRecursive,"level"=>1])
+                                                    @endif
+                                                @endforeach
+                                            @endif
+
+                                        </select>
+
                                     </div>
                                 </div>
-                                </div>
+
+
 
                                 <div class="w-100">
                                     <h3 class="mb-3">ویژگی های محصول </h3>
@@ -255,7 +260,7 @@
 @endsection
 @section("js-import")
 
-    <script src={{asset("/admin/DropZone-min/dropzone.min.js")}} type="text/javascript"></script>
+{{--    <script src={{asset("/admin/DropZone-min/dropzone.min.js")}} type="text/javascript"></script>--}}
 {{--    <script src={{asset("/admin/DropZone-min/dropzone-amd-module.min.js")}} type="text/javascript"></script>--}}
     <script>
         {{--var drop=new Dropzone("#photo",{--}}
@@ -269,21 +274,55 @@
         {{--        document.getElementById("photo_id").value=response.photo_id--}}
         {{--    }--}}
         {{--})--}}
-        Dropzone.autoDiscover=false;
-        var PhotoGallery=[];
-        var drop=new Dropzone("#photo",{
-            url:"{{route('photo.upload')}}",
-            addRemoveLinks:true,
-            // maxFiles:1,
-            sending:function (file,xhr,formDate) {
-                formDate.append("_token","{{csrf_token()}}");
-            },success:function (file,response) {
-                console.log(response.photo_id);
-                // document.getElementById("photo_id").value=response.photo_id
-                PhotoGallery.push(response.photo_id);
-            }
 
-        });
+            Dropzone.autoDiscover=false;
+        var PhotoGallery=[];
+
+        if ($().dropzone && !$(".dropzone").hasClass("disabled")) {
+            $(".dropzone").dropzone({
+                url: "{{route('photo.upload')}}",
+
+                sending:function (file,xhr,formDate) {
+                    formDate.append("_token","{{csrf_token()}}");
+                },
+
+                init: function () {
+                    this.on("success", function (file,response) {
+                        console.log(response.photo_id);
+                        PhotoGallery.push(response.photo_id);
+                        // document.getElementById("photo_id").value=response.photo_id
+
+                    });
+                },
+                thumbnailWidth: 160,
+                previewTemplate: '<div class="dz-preview dz-file-preview mb-3"><div class="d-flex flex-row "><div class="p-0 w-30 position-relative"><div class="dz-error-mark"><span><i></i></span></div><div class="dz-success-mark"><span><i></i></span></div><div class="preview-container"><img data-dz-thumbnail class="img-thumbnail border-0" /><i class="simple-icon-doc preview-icon" ></i></div></div><div class="pl-3 pt-2 pr-2 pb-1 w-70 dz-details position-relative"><div><span data-dz-name></span></div><div class="text-primary text-extra-small" data-dz-size /><div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div><div class="dz-error-message"><span data-dz-errormessage></span></div></div></div><a href="#/" class="remove" data-dz-remove><i class="glyph-icon simple-icon-trash"></i></a></div>'
+            });
+        }
+
+
+
+
+
+
+
+
+
+
+        {{--Dropzone.autoDiscover=false;--}}
+        {{--var PhotoGallery=[];--}}
+        {{--var drop=new Dropzone("#photo",{--}}
+        {{--    url:"{{route('photo.upload')}}",--}}
+        {{--    addRemoveLinks:true,--}}
+        {{--    // maxFiles:1,--}}
+        {{--    sending:function (file,xhr,formDate) {--}}
+        {{--        formDate.append("_token","{{csrf_token()}}");--}}
+        {{--    },success:function (file,response) {--}}
+        {{--        console.log(response.photo_id);--}}
+        {{--        // document.getElementById("photo_id").value=response.photo_id--}}
+        {{--        PhotoGallery.push(response.photo_id);--}}
+        {{--    }--}}
+
+        {{--});--}}
 
         setPhoto=function(){
             document.getElementById("photo_id").value=PhotoGallery

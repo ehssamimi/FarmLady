@@ -58,6 +58,14 @@
 
                                     </select>
 
+                                    <div class=" w-100  mt-2">
+                                        <div class="form-group  ">
+                                            <label  class=" control-label">عکس</label>
+                                            <div class=" dropzone w-100  m-2" id="photo" ></div>
+                                            <input type="hidden" class="form-control" id="photo_id" name="photo_id" >
+                                        </div>
+                                    </div>
+
 
 
 {{--                                        <select class="form-control col-sm-12 " id="parent_id" name="parent_id">--}}
@@ -112,4 +120,81 @@
         </div>
     </main>
 
+@endsection
+@section("js-import")
+
+    <script>
+
+
+            Dropzone.autoDiscover=false;
+        var PhotoGallery=[];
+
+        if ($().dropzone && !$(".dropzone").hasClass("disabled")) {
+            $(".dropzone").dropzone({
+                url: "{{route('photo.upload')}}",
+
+                sending:function (file,xhr,formDate) {
+                    formDate.append("_token","{{csrf_token()}}");
+                },
+
+                init: function () {
+                    this.on("success", function (file,response) {
+                        console.log(response.photo_id);
+                        document.getElementById("photo_id").value=response.photo_id
+
+                    });
+                },
+                thumbnailWidth: 160,
+                previewTemplate: '<div class="dz-preview dz-file-preview mb-3"><div class="d-flex flex-row "><div class="p-0 w-30 position-relative"><div class="dz-error-mark"><span><i></i></span></div><div class="dz-success-mark"><span><i></i></span></div><div class="preview-container"><img data-dz-thumbnail class="img-thumbnail border-0" /><i class="simple-icon-doc preview-icon" ></i></div></div><div class="pl-3 pt-2 pr-2 pb-1 w-70 dz-details position-relative"><div><span data-dz-name></span></div><div class="text-primary text-extra-small" data-dz-size /><div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div><div class="dz-error-message"><span data-dz-errormessage></span></div></div></div><a href="#/" class="remove" data-dz-remove><i class="glyph-icon simple-icon-trash"></i></a></div>'
+            });
+        }
+
+
+
+        {{--var drop=new Dropzone("#photo",{--}}
+        {{--    url:"{{route('photo.upload')}}",--}}
+        {{--    addRemoveLinks:true,--}}
+        {{--    thumbnailWidth: 160,--}}
+        {{--    // previewTemplate: '<div class="dz-preview dz-file-preview mb-3"><div class="d-flex flex-row "><div class="p-0 w-30 position-relative"><div class="dz-error-mark"><span><i></i></span></div><div class="dz-success-mark"><span><i></i></span></div><div class="preview-container"><img data-dz-thumbnail class="img-thumbnail border-0" /><i class="simple-icon-doc preview-icon" ></i></div></div><div class="pl-3 pt-2 pr-2 pb-1 w-70 dz-details position-relative"><div><span data-dz-name></span></div><div class="text-primary text-extra-small" data-dz-size /><div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div><div class="dz-error-message"><span data-dz-errormessage></span></div></div></div><a href="#/" class="remove" data-dz-remove><i class="glyph-icon simple-icon-trash"></i></a></div>'--}}
+
+        {{--    // maxFiles:1,--}}
+        {{--    sending:function (file,xhr,formDate) {--}}
+        {{--        formDate.append("_token","{{csrf_token()}}");--}}
+        {{--    },success:function (file,response) {--}}
+        {{--        console.log(response.photo_id);--}}
+        {{--        // document.getElementById("photo_id").value=response.photo_id--}}
+        {{--        PhotoGallery.push(response.photo_id);--}}
+        {{--    }--}}
+
+        {{--});--}}
+
+        // if ($().dropzone && !$(".dropzone").hasClass("disabled")) {
+        //     $(".dropzone").dropzone({
+        //         // url: "https://httpbin.org/post",
+        //         // init: function () {
+        //         //   this.on("success", function (file, responseText) {
+        //         //     console.log(responseText);
+        //         //   });
+        //         // },
+        //         thumbnailWidth: 160,
+        //         previewTemplate: '<div class="dz-preview dz-file-preview mb-3"><div class="d-flex flex-row "><div class="p-0 w-30 position-relative"><div class="dz-error-mark"><span><i></i></span></div><div class="dz-success-mark"><span><i></i></span></div><div class="preview-container"><img data-dz-thumbnail class="img-thumbnail border-0" /><i class="simple-icon-doc preview-icon" ></i></div></div><div class="pl-3 pt-2 pr-2 pb-1 w-70 dz-details position-relative"><div><span data-dz-name></span></div><div class="text-primary text-extra-small" data-dz-size /><div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div><div class="dz-error-message"><span data-dz-errormessage></span></div></div></div><a href="#/" class="remove" data-dz-remove><i class="glyph-icon simple-icon-trash"></i></a></div>'
+        //
+        //     });
+        // }
+
+
+
+
+
+        // CKEDITOR.replace("description",{
+        //     customConfig:"config.js",
+        //     toolbar:"simple",
+        //     language:"fa"
+        //     // removePlugins:""
+        // })
+
+
+
+
+    </script>
 @endsection

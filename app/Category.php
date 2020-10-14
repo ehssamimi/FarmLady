@@ -19,5 +19,9 @@ class Category extends Model
 //        return $this->hasMany(Category::class);
         return $this->belongsToMany(Product::class);
     }
+    public function photos()
+    {
+        return $this->belongsToMany(Photo::class);
+    }
 
 }
