@@ -34,4 +34,8 @@ return [
         'secret' => env('SPARKPOST_SECRET'),
     ],
 
+    'ghasedak'=>[
+        'key'=>env('GHASEDAK_API_KEY')
+    ]
+
 ];

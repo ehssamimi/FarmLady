@@ -18,6 +18,10 @@
     <link rel="stylesheet" type="text/css" href="css/stylesheet-rtl.css" />
     <link rel="stylesheet" type="text/css" href="css/responsive-rtl.css" />
     <link rel="stylesheet" type="text/css" href="css/stylesheet-skin2.css" />
+{{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">--}}
+
+{{--    <link rel="stylesheet" type="text/css" href="css/semantic.min.css" />--}}
+
 @yield("css-import")
     <!-- CSS Part End-->
 </head>
@@ -91,8 +95,8 @@
                     </div>
                     <div id="top-links" class="nav pull-right flip">
                         <ul>
-                            <li><a href="login.html">ورود</a></li>
-                            <li><a href="register.html">ثبت نام</a></li>
+                            <li><a href={{route("login")}}>ورود</a></li>
+{{--                            <li><a href="register.html">ثبت نام</a></li>--}}
                         </ul>
                     </div>
                 </div>
@@ -497,12 +501,14 @@
 
 </div>
 <!-- JS Part Start-->
+<script src="{{asset('js/app.js')}}"></script>
 <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="js/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/jquery.easing-1.3.min.js"></script>
 <script type="text/javascript" src="js/jquery.dcjqaccordion.min.js"></script>
 <script type="text/javascript" src="js/owl.carousel.min.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
+
 @yield("js-import")
 
 <!-- JS Part End-->

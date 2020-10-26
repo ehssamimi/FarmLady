@@ -1,4 +1,12 @@
 <?php
+Route::prefix('api')->group(function () {
+
+    Route::get('/cities/{provinceId}', 'front\UserController@getAllCities');
+//    Route::get('/products/{id}/', 'Frontend\ProductController@apiGetProduct');
+//    Route::get('/sort-products/{id}/{sort}/{paginate}', 'Frontend\ProductController@apiGetSortedProduct');
+//    Route::get('/category-attribute/{id}', 'Frontend\ProductController@apiGetCategoryAttributes');
+//    Route::get('/filter-products/{id}/{sort}/{paginate}/{attributes}', 'Frontend\ProductController@apiGetFilterProducts');
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +25,29 @@
 //    return view('adminPanel.layOut.dashBoard.Dashboard');
 //});
 
-Auth::routes();
+//Auth::routes();
+//Route::namespace('Auth')->middleware('guest')->group(function() {
+Route::namespace('Auth')->group(function() {
+    Route::get('login' , 'LoginController@showLogin')->name('login');
+    Route::post('login' , 'LoginController@verifyCode')->name('auth.verifyCode');
+
+
+    Route::get('check-code' , 'LoginController@showCode')->name('validate.show');
+    Route::post('check-code' , 'LoginController@checkCode')->name('validate.check');
+
+
+//    Route::get('register' , 'RegisterController@showRegister')->name('auth.login');
+//    Route::post('register' , 'RegisterController@regsiter');
+});
+//Route::middleware('auth')->group(function() {
+    Route::get('user-profile' , 'front\UserController@UserProfile')->name('user-profile') ;
+    Route::get('user-profile-edit' , 'front\UserController@UserProfileEdit')->name('user-profile-edit') ;
+    Route::post('user-profile-edit' , 'front\UserController@store') ;
+
+//});
+
+
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
