@@ -13,7 +13,7 @@
                     <p class="list-item-heading mb-0 truncate">{{$category->name}}</p>
                 </a>
 {{--                <p class="mb-0 text-muted text-small w-15 w-sm-100">{{$category->parent_id}}</p>--}}
-                <p class="mb-0 text-muted text-small w-15 w-sm-100">{{$category->photos[0]->path}}</p>
+{{--                <p class="mb-0 text-muted text-small w-15 w-sm-100">{{$category->photos[0]->path}}</p>--}}
                 {{--                                    <p class="mb-0 text-muted text-small w-15 w-sm-100">13.04.2018</p>--}}
                 <div class="w-30 w-sm-100">
                     <a href={{route("category.edit", $category->id )}}>   <span class="btn  btn-warning"  onclick="">ویرایش</span></a>

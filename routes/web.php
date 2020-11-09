@@ -44,9 +44,10 @@ Route::namespace('Auth')->group(function() {
     Route::get('user-profile-edit' , 'front\UserController@UserProfileEdit')->name('user-profile-edit') ;
     Route::post('user-profile-edit' , 'front\UserController@store') ;
 
+
 //});
-
-
+    Route::get('add-to-card/{id}','front\CardController@addtoCard')->name('card.add');
+    Route::post('remove-from-card/{id}','front\CardController@removefromCard')->name('cart.remove');
 
 
 Route::get('/home', 'HomeController@index')->name('home');

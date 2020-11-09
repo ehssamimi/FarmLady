@@ -19,6 +19,8 @@ class HomeController extends Controller
 //            $q->where('name','مربا');
 //        }])->limit(10)->get();
          $lastProducts=Product::orderBy('created_at','desc')->limit(10)->get();
+         $khoshkbar=Product::orderBy('created_at','desc')->limit(10)->get();
+
         return view('front.home.home',compact(["lastProducts"]));
     }
 

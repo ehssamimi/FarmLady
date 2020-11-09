@@ -83,7 +83,7 @@
                                         </div>
 
                                     @endforeach
-                                    <p>{{$category }}</p>
+{{--                                    <p>{{$category }}</p>--}}
 {{--                                    <p>{{$categories }}</p>--}}
 
 

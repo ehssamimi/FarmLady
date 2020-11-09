@@ -35,7 +35,7 @@
                             <div class="owl-carousel product_carousel_tab">
                             @foreach($lastProducts as $lastProduct )
                                     <div class="product-thumb">
-                                        <div class="image"><a href="product.html"><img src="{{$lastProduct->photos[0]->path}}" alt="عطر نینا ریچی" title="عطر نینا ریچی" class="img-responsive" /></a></div>
+                                        <div class="image"><a href="product.html"><img src="{{$lastProduct->photos[0]->path}}" alt="{{$lastProduct->title}}" title="{{$lastProduct->title}}" class="img-responsive" /></a></div>
                                         <div class="caption">
                                             <h4><a href="product.html">{{$lastProduct->title}}</a></h4>
                                             @if($lastProduct->discount_price===null)
@@ -43,16 +43,16 @@
                                             @else
                                                 <p class="price"> <span class="price-new"> {{$lastProduct->discount_price}} تومان</span> <span class="price-old"> {{$lastProduct->price}} تومان</span> <span class="saving">{{round((($lastProduct->price-$lastProduct->discount_price)/$lastProduct->price)*100)}}%</span> </p>
                                             @endif
-
-
                                         </div>
+
                                         <div class="button-group">
-                                            <button class="btn-primary" type="button" onClick=""><span>افزودن به سبد</span></button>
+                                            <a href="{{route('card.add',['id'=>$lastProduct->id])}}" class="btn-primary " style="text-decoration: none"  type="button"   ><span>افزودن به سبد</span></a>
                                             <div class="add-to-links">
                                                 <button type="button" data-toggle="tooltip" title="افزودن به علاقه مندی" onClick=""><i class="fa fa-heart"></i></button>
                                                 <button type="button" data-toggle="tooltip" title="افزودن به مقایسه" onClick=""><i class="fa fa-exchange"></i></button>
                                             </div>
                                         </div>
+
                                     </div>
                             @endforeach
 
