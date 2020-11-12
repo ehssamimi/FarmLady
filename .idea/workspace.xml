@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7413e76-72b8-48cf-8943-43faafb200c6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/front/home/category/category.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Address.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Address.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/front/CardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/front/CardController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/front/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/front/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/adminPanel/layOut/categories/edit-categories.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/adminPanel/layOut/categories/edit-categories.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/adminPanel/layOut/categories/partial/partial-list-category.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/adminPanel/layOut/categories/partial/partial-list-category.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/adminPanel/layOut/products/list-products.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/adminPanel/layOut/products/list-products.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/front/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/front/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_09_140747_create_products_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_09_140747_create_products_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/front/home/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front/home/home.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/front/layOut/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/front/layOut/master.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
@@ -125,7 +129,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Blade" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../HandMade/Rako/rako-pwa" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.customizations" />
   </component>
@@ -177,6 +181,8 @@
       <workItem from="1604684880241" duration="307000" />
       <workItem from="1604685520680" duration="7242000" />
       <workItem from="1604728236986" duration="610000" />
+      <workItem from="1604953650358" duration="703000" />
+      <workItem from="1605208944861" duration="6705000" />
     </task>
     <servers />
   </component>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\front;
 
+use App\Category;
 use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -21,7 +22,30 @@ class HomeController extends Controller
          $lastProducts=Product::orderBy('created_at','desc')->limit(10)->get();
          $khoshkbar=Product::orderBy('created_at','desc')->limit(10)->get();
 
-        return view('front.home.home',compact(["lastProducts"]));
+         $categoriesList=Category::with('photos')->orderBy('created_at','desc')->limit(4)->get();
+
+
+        return view('front.home.home',compact(["lastProducts","categoriesList"]));
+    }
+
+
+    public function CategoryInfo($id)
+    {
+//        $lastProducts=Product::with(['categories'=>function($q){
+//            $q->where('name','مربا');
+//        }])->limit(10)->get();
+
+
+//         $Products=Product::with('categories')->paginate(10);
+        $Products=Product::with("photos")->findOrFail($id)->paginate(10);
+
+         return ($Products);
+
+
+
+//         $khoshkbar=Product::orderBy('created_at','desc')->limit(10)->get();
+
+//        return view('front.home.category.category',compact(["lastProducts"]));
     }
 
     /**

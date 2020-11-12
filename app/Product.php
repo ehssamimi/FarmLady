@@ -14,8 +14,9 @@ class Product extends Model
 
     public function attributes()
     {
-         return $this->belongsToMany(Attribute::class)->withPivot("value");
+        return $this->belongsToMany(Attribute::class)->withPivot("value");
     }
+
     public function categories()
     {
 //        return $this->belongsTo(Category::class);
@@ -25,5 +26,10 @@ class Product extends Model
     public function photos()
     {
         return $this->belongsToMany(Photo::class);
+    }
+
+    public function order_items()
+    {
+        return $this->hasMany(OrderItem::class);
     }
 }

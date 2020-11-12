@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateProductsTable extends Migration
 {
@@ -24,7 +24,6 @@ class CreateProductsTable extends Migration
             $table->float("discount_price")->nullable();
             $table->text("description");
             $table->integer("count");
-
 
 
 //            $table->unsignedInteger("category_id");

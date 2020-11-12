@@ -15,10 +15,12 @@
                     <!-- Banner Start-->
                     <div class="marketshop-banner">
                         <div class="row">
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="image/banner/sample-banner-3-300x300.jpg" alt="بنر نمونه 2" title="بنر نمونه 2" /></a></div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="image/banner/sample-banner-1-300x300.jpg" alt="بنر نمونه" title="بنر نمونه" /></a></div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="image/banner/sample-banner-2-300x300.jpg" alt="بنر نمونه 3" title="بنر نمونه 3" /></a></div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="image/banner/sample-banner-4-300x300.jpg" alt="بنر نمونه 4" title="بنر نمونه 4" /></a></div>
+                            @foreach($categoriesList as $categoryItem )
+                                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12"><a href="{{route('category.each',['id'=>$categoryItem->id])}}"><img
+                                            src="{{$categoryItem->photos[0]->path}}" alt="{{$categoryItem->name}}"
+                                            title="{{$categoryItem->name}}"/></a>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                     <!-- Banner End-->
@@ -33,6 +35,7 @@
 
                         <div id="tab-latest" class="tab_content">
                             <div class="owl-carousel product_carousel_tab">
+
                             @foreach($lastProducts as $lastProduct )
                                     <div class="product-thumb">
                                         <div class="image"><a href="product.html"><img src="{{$lastProduct->photos[0]->path}}" alt="{{$lastProduct->title}}" title="{{$lastProduct->title}}" class="img-responsive" /></a></div>

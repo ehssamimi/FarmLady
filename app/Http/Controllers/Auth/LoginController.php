@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\ActiveCode;
 use App\Http\Controllers\Controller;
-use App\Notifications\ActiveCodeNotification;
 use App\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -58,23 +56,20 @@ class LoginController extends Controller
         $validData = $request->validate([
 //            'name' => ['required' , 'string' , 'max:255' , 'min:3'],
 //            'phone' => ['required' , 'regex:/^09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}$/' ,'unique:users,phone']
-            'phone' => ['required' , 'regex:/^09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}$/']
-        ],[
+            'phone' => ['required', 'regex:/^09(1[0-9]|3[1-9]|2[1-9])-?[0-9]{3}-?[0-9]{4}$/']
+        ], [
 
             'phone.required' => "شماره تلفن اجباری است ",
             'phone.regex' => "نوع شماره تلفن مناسب نیست ",
         ]);
 //        return  $validData;
-        $code=ActiveCode::generateCode($request->phone);
+        $code = ActiveCode::generateCode($request->phone);
 //        dd($code);
-        $request->session()->flash('phone',$request->phone);
+        $request->session()->flash('phone', $request->phone);
 //        $activecode=new ActiveCode();
 
 //        $activecode->notify(new ActiveCodeNotification($code,$request->phone));
         return redirect(route('validate.show'));
-
-
-
 
 
 //        $activecode=new ActiveCode();
@@ -85,11 +80,9 @@ class LoginController extends Controller
 //        return  (view('front.Login.verifyCode'));
 
 
-
 //        return $request->all();
 
     }
-
 
 
     public function checkCode(Request $request)
@@ -97,7 +90,7 @@ class LoginController extends Controller
         $validData = $request->validate([
 
             'Inputcode' => ['required']
-        ],[
+        ], [
 
             'Inputcode.required' => "کداجباری است ",
 
@@ -110,35 +103,34 @@ class LoginController extends Controller
         $request->session()->reflash();
 
 //        *****check verify cod*****
-        $status=ActiveCode::verificationCod( (int)$request->Inputcode,$request->session()->get('phone'));
+        $status = ActiveCode::verificationCod((int)$request->Inputcode, $request->session()->get('phone'));
 
 
-        if ($status){
+        if ($status) {
 //        *****remove  old cods*****
-           $ids= ActiveCode::where('phone',$request->session()->get('phone'))->get(['id']);
-            ActiveCode::whereIn('id',$ids)->delete();
+            $ids = ActiveCode::where('phone', $request->session()->get('phone'))->get(['id']);
+            ActiveCode::whereIn('id', $ids)->delete();
 
 
+            //        *****check user if exist or create*****
+            $IsUser = User::isUser($request->session()->get('phone'));
 
- //        *****check user if exist or create*****
-            $IsUser=User::isUser($request->session()->get('phone'));
 
-
-            if ( $IsUser ){
-                $user=User::where('phone',$request->session()->get('phone'))->first();
+            if ($IsUser) {
+                $user = User::where('phone', $request->session()->get('phone'))->first();
 //                return($user);
                 Auth::login($user);
-                if ($user->complete==0){
+                if ($user->complete == 0) {
 
                     return redirect(route('user-profile'));
-                }else{
-
-                    return redirect(route('/'));
+                } else {
+                    return redirect('/');
+//                    return redirect(route('/'));
                 }
 
-            }else{
-                $user=new User();
-                $user->phone=$request->session()->get('phone');
+            } else {
+                $user = new User();
+                $user->phone = $request->session()->get('phone');
                 $user->save();
                 Auth::login($user);
                 return redirect(route('user-profile-edit'));
@@ -147,8 +139,8 @@ class LoginController extends Controller
             }
 
 
-        }else{
-            return redirect('check-code')->withErrors([ 'کد ارسالی اشتباه است'])->withInput();
+        } else {
+            return redirect('check-code')->withErrors(['کد ارسالی اشتباه است'])->withInput();
 //            dd("کد اشتباه است ");
         }
 
@@ -170,14 +162,6 @@ class LoginController extends Controller
 
 
     }
-
-
-
-
-
-
-
-
 
 
 }

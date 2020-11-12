@@ -8,16 +8,16 @@
     <title>سایت فروشگاهی بانوی مزرعه</title>
     <meta name="description" content="Responsive and clean html template design for any kind of ecommerce webshop">
     <!-- CSS Part Start-->
-    <link rel="stylesheet" type="text/css" href="js/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="js/bootstrap/css/bootstrap-rtl.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/font-awesome/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
-    <link rel="stylesheet" type="text/css" href="css/owl.carousel.css" />
-    <link rel="stylesheet" type="text/css" href="css/owl.transitions.css" />
-    <link rel="stylesheet" type="text/css" href="css/responsive.css" />
-    <link rel="stylesheet" type="text/css" href="css/stylesheet-rtl.css" />
-    <link rel="stylesheet" type="text/css" href="css/responsive-rtl.css" />
-    <link rel="stylesheet" type="text/css" href="css/stylesheet-skin2.css" />
+    <link rel="stylesheet" type="text/css" href="/js/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/js/bootstrap/css/bootstrap-rtl.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/stylesheet.css" />
+    <link rel="stylesheet" type="text/css" href="/css/owl.carousel.css" />
+    <link rel="stylesheet" type="text/css" href="/css/owl.transitions.css" />
+    <link rel="stylesheet" type="text/css" href="/css/responsive.css" />
+    <link rel="stylesheet" type="text/css" href="/css/stylesheet-rtl.css" />
+    <link rel="stylesheet" type="text/css" href="/css/responsive-rtl.css" />
+    <link rel="stylesheet" type="text/css" href="/css/stylesheet-skin2.css" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 {{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">--}}
 
@@ -176,7 +176,7 @@
                                             </tr>
                                             </tbody>
                                         </table>
-                                        <p class="checkout"><a href="cart.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> مشاهده سبد</a>&nbsp;&nbsp;&nbsp;<a href="checkout.html" class="btn btn-primary"><i class="fa fa-share"></i> تسویه حساب</a></p>
+                                        <p class="checkout"><a href="cart.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> مشاهده سبد</a>&nbsp;&nbsp;&nbsp;<a href="/cart-checkout" class="btn btn-primary"><i class="fa fa-share"></i> تسویه حساب</a></p>
                                     </div>
                                 </li>
                             </ul>
@@ -518,12 +518,12 @@
 </div>
 <!-- JS Part Start-->
 <script src="{{asset('js/app.js')}}"></script>
-<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="js/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/jquery.easing-1.3.min.js"></script>
-<script type="text/javascript" src="js/jquery.dcjqaccordion.min.js"></script>
-<script type="text/javascript" src="js/owl.carousel.min.js"></script>
-<script type="text/javascript" src="js/custom.js"></script>
+<script type="text/javascript" src="/js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/jquery.easing-1.3.min.js"></script>
+<script type="text/javascript" src="/js/jquery.dcjqaccordion.min.js"></script>
+<script type="text/javascript" src="/js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="/js/custom.js"></script>
 
 @yield("js-import")
 
