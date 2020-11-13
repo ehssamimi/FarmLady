@@ -50,10 +50,10 @@
 
                                         <div class="button-group">
                                             <a href="{{route('card.add',['id'=>$lastProduct->id])}}" class="btn-primary " style="text-decoration: none"  type="button"   ><span>افزودن به سبد</span></a>
-                                            <div class="add-to-links">
-                                                <button type="button" data-toggle="tooltip" title="افزودن به علاقه مندی" onClick=""><i class="fa fa-heart"></i></button>
-                                                <button type="button" data-toggle="tooltip" title="افزودن به مقایسه" onClick=""><i class="fa fa-exchange"></i></button>
-                                            </div>
+{{--                                            <div class="add-to-links">--}}
+{{--                                                <button type="button" data-toggle="tooltip" title="افزودن به علاقه مندی" onClick=""><i class="fa fa-heart"></i></button>--}}
+{{--                                                <button type="button" data-toggle="tooltip" title="افزودن به مقایسه" onClick=""><i class="fa fa-exchange"></i></button>--}}
+{{--                                            </div>--}}
                                         </div>
 
                                     </div>

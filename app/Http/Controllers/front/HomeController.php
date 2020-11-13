@@ -37,15 +37,14 @@ class HomeController extends Controller
 
 
 //         $Products=Product::with('categories')->paginate(10);
-        $Products=Product::with("photos")->findOrFail($id)->paginate(10);
+        $MainProducts=Product::with("photos")->findOrFail($id)->paginate(10);
 
-         return ($Products);
 
 
 
 //         $khoshkbar=Product::orderBy('created_at','desc')->limit(10)->get();
 
-//        return view('front.home.category.category',compact(["lastProducts"]));
+        return view('front.home.category.category',compact(["MainProducts"]));
     }
 
     /**
